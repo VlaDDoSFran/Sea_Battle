@@ -34,4 +34,5 @@ void PrintField(char** field) {
 int main() {
 	char** field = InitField();
 	PrintField(field);
+
 }
