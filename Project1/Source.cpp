@@ -55,6 +55,7 @@ void PrintField(char** field) {
 }
 
 int main() {
+	setlocale(LC_ALL, "RU");
 	// Поле игрока и поле противника
 	char** field_player = InitField();
 	char** field_enemy = InitField();
