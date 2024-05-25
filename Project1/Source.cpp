@@ -55,6 +55,35 @@ void PrintField(char** field) {
 	std::cout << "\n\n";
 }
 
+void GoPlay(int SetForPlay, int SetForPlacing, int SetForBot) {
+	// Поле игрока и поле противника
+	char** field_player1 = InitField();
+	char** field_enemy1 = InitField();
+	char** field_player2 = InitField();
+	char** field_enemy2 = InitField();
+	int turn = 1, i_ready;
+	while (true) {
+		while (turn == 1) {
+			std::cout << "Очередь " << turn << " игрока.\nВы готовы?\n(Любое число, если да):\n";
+			std::cin >> i_ready;
+			system("cls");
+			PrintField(field_player1);
+			PrintField(field_enemy1);
+			system("cls");
+			turn = 2;
+		}
+		while (turn == 2) {
+			std::cout << "Очередь " << turn << " игрока.\nВы готовы?\n(Любое число, если да):\n";
+			std::cin >> i_ready;
+			system("cls");
+			PrintField(field_player2);
+			PrintField(field_enemy2);
+			system("cls");
+			turn = 1;
+		}
+	}
+}
+
 int main() {
 	setlocale(LC_ALL, "RU");
 	// Переменные для выбора
@@ -74,11 +103,7 @@ int main() {
 		}
 		else if (SelectInMenu == Play) {
 			system("cls");
-			// Поле игрока и поле противника
-			char** field_player = InitField();
-			char** field_enemy = InitField();
-			PrintField(field_player);
-			PrintField(field_enemy);
+			GoPlay(PlaySet, PlacingSet, BotSet);
 		}
 		else if (SelectInMenu == Options) {
 			system("cls");
@@ -91,24 +116,24 @@ int main() {
 					break;
 				}
 				else if (SelectInOptions == PlayMode) {
-					system("cls");
 					do {
+						system("cls");
 						std::cout << "Выберите режим игры:\n0 - Против Игрока\n1 - Против Компьютера\n";
 						std::cin >> PlaySet;
 					} while (PlaySet < 0 || PlaySet > 1);
 					system("cls");
 				}
 				else if (SelectInOptions == PlacingSettings) {
-					system("cls");
 					do {
+						system("cls");
 						std::cout << "Выберите вариант размещения кораблей у игроков:\n0 - Вручную\n1 - Автоматически\n";
 						std::cin >> PlacingSet;
 					} while (PlacingSet < 0 || PlacingSet > 1);
 					system("cls");
 				}
 				else if (SelectInOptions == BotSettings) {
-					system("cls");
 					do {
+						system("cls");
 						std::cout << "Выберите режим игры для компьютера:\n0 - Случайные выстрелы\n1 - Интеллектуальная игра\n";
 						std::cin >> BotSet;
 					} while (BotSet < 0 || BotSet > 1);
